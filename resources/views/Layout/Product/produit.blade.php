@@ -149,7 +149,6 @@
         </div>
       </div>
       @endforeach      
-    </div>
       <a href="/addProduitpage"  class="btn btn-primary btn-sm" type="button" id="btnAdd" >Ajouter Produit</a>
       
     </div>
@@ -157,8 +156,9 @@
     <div class="pagination justify-content-center">
       {{ $products->links('pagination::bootstrap-5') }}
     </div>
-
+    
   </section>
+</div>
 
 @endsection
 

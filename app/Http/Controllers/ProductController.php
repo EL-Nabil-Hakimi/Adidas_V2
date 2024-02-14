@@ -105,8 +105,10 @@ class ProductController extends Controller
 
         public function search($title = "")
         {   
-            $products = DB::select('select * from produit WHERE name LIKE "%%'.$title.'%%" ');
-
+            $products = DB::table('produit')
+            ->where('name', 'LIKE', '%' . $title . '%')
+            ->paginate(5);
+        
             return view('Layout.Product.page_search', compact('products'));
         }
 
