@@ -73,8 +73,12 @@ Route::post('/ModifyPdouit', [ProductController::class , 'Modify_Produit'])->nam
 Route::post('/modifyCategorie', [CategorieController::class , 'modifyCategorie']);
 Route::post('/modifyRole', [RolesController::class , 'modifyRole']);
 
-
-
+// Forgot Password________________________________________________________________________________
+Route::get('/forgotpage' , [UtilisateurModelController::class   ,"forgotpage"]);
+Route::post('/forgot' , [UtilisateurModelController::class   ,"forgot"]);
+Route::get('/reset/{token}' , [UtilisateurModelController::class   ,"reset"]);
+Route::post('/reset/{token}' , [UtilisateurModelController::class   ,"reset_pass"]);
+// Forgot Password________________________________________________________________________________
 
 //Page Note Found----------------------------------------------
         Route::get('/Notfound', function(){
@@ -83,5 +87,6 @@ Route::post('/modifyRole', [RolesController::class , 'modifyRole']);
 //Page Note Found----------------------------------------------
 
 Route::get('/home', [U_Index::class, 'indexUser']);
-
+ 
+Route::get("/search_page/{title?}" , [ProductController::class, 'search']);
 

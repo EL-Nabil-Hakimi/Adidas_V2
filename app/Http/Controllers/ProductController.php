@@ -6,6 +6,7 @@ use App\Models\CategorieModel;
 use App\Models\ProduitModel;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -27,7 +28,7 @@ class ProductController extends Controller
                 return $sessData;
         }
 
-        $products = $this->product->paginate(10);
+        $products = $this->product->paginate(3);
         return view('Layout.Product.produit', compact('products' ,'sessData' ))->with('msg', $msg);
 
     }
@@ -39,7 +40,7 @@ class ProductController extends Controller
     public function modifyProduitPage(Request $request){
         $id = $request->id;
         $product = $this->product->find($id);
-        $categories = $this->category->all();        
+        $categories = $this->category->all();  
         return view('Layout.Product.modifyproduit')->with("product", $product)->with("categories" , $categories);
     }
 
@@ -99,5 +100,14 @@ class ProductController extends Controller
 
     return redirect()->route('ProductView')->with('msg' , 'Modify');
 }
+
+
+
+        public function search($title = "")
+        {   
+            $products = DB::select('select * from produit WHERE name LIKE "%%'.$title.'%%" ');
+
+            return view('Layout.Product.page_search', compact('products'));
+        }
 
 }

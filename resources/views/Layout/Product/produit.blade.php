@@ -2,10 +2,75 @@
 @section('content')
 
 <section>
-  
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");
 
-    <div class="container py-5">
-   
+
+
+
+      .height{
+      height: 15vh;
+      }
+
+
+      .search{
+      position: relative;
+      box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+        
+      }
+
+      .search input{
+
+      height: 60px;
+      text-indent: 25px;
+      border: 2px solid #d6d4d4;
+
+
+      }
+
+
+      .search input:focus{
+
+      box-shadow: none;
+      border: 2px solid blue;
+
+
+      }
+
+      .search .fa-search{
+
+      position: absolute;
+      top: 20px;
+      left: 16px;
+
+      }
+
+      .search button{
+
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      height: 50px;
+      width: 110px;
+      background: blue;
+
+   }
+  </style>
+
+    <div class="row height d-flex justify-content-center align-items-center">
+
+      <div class="col-md-8">
+
+        <div class="search">
+              <i class="fa fa-search"></i>
+              <input type="text" id="searshtext" class="form-control" placeholder="Pc Portable ...">
+              <button class="btn btn-primary" onclick="search()">Recherche</button>
+        </div>
+        
+      </div>
+                      
+      </div>
+
     @if($msg == 'Add')
       <div class="alert alert-primary" role="alert">
         Le produit a été ajouté avec succès
@@ -21,7 +86,7 @@
           Le produit a été Supprimer avec succès
           </div>
     @endif
-     
+    <div id="MyDives"> 
       @foreach ($products as $product)
           
       <div class="row justify-content-center mb-3">
@@ -84,7 +149,7 @@
         </div>
       </div>
       @endforeach      
-      
+    </div>
       <a href="/addProduitpage"  class="btn btn-primary btn-sm" type="button" id="btnAdd" >Ajouter Produit</a>
       
     </div>
@@ -149,20 +214,19 @@
   }
 
   var showImage = function(image) {
-    Swal.fire({
-        imageUrl: 'assets/images/' + image,
-        imageWidth: 500,
-        imageHeight: 480,
-        imageAlt: 'Custom Image',
-        showCancelButton: true,
-        cancelButtonColor: '#3085d6',
-        cancelButtonText: 'Close',
-        showConfirmButton: false, 
-        customClass: {
-            popup: 'custom-popup-class' 
-        }
-    });
-}
+          Swal.fire({
+          imageUrl: 'assets/images/' + image,
+          imageAlt: 'Custom Image',
+          showCancelButton: true,
+          cancelButtonColor: '#3085d6',
+          cancelButtonText: 'Close',
+          showConfirmButton: false, 
+          customClass: {
+              popup: 'custom-popup-class' 
+          },
+          imageSize: '100%', 
+        })
+    }
 
 
   var Details = function ( id , name , description , image , prix){
@@ -184,7 +248,22 @@
     });
 
   }
-    
+
+      var search = function () {
+        var title = document.getElementById("searshtext").value;
+        var reponse = new XMLHttpRequest();
+        reponse.open("GET", "/search_page/" + title, true);
+        
+        reponse.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("MyDives").innerHTML = this.responseText;
+            }
+        };
+        
+        // Corrected URL concatenation
+        reponse.send();
+    };
+ 
 </script>
 
 

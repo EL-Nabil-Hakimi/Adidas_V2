@@ -9,7 +9,7 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-	<link rel="stylesheet" href="assets/css/auth.css">
+	<link rel="stylesheet" href="/assets/css/auth.css">
 
 	</head>
 	<body >
@@ -23,26 +23,19 @@
 				
 				<div class="col-md-7 col-lg-5">
 
-					@if($errors->any())
-					<div class="alert alert-danger">
-							@foreach($errors->all() as $error)
-								{{ $error }}
-							@endforeach
-					</div>
+					@if(session('message'))
+						<div class="alert alert-danger">
+							{{ session('message') }}
+						</div>
 					@endif
-					
-					@if(session('message_green'))
-						<div class="alert alert-success">
-							{{ session('message_green') }}
-                        </div>
-					
-					@endif
+
+
 					<div class="wrap">
 						<div class="img" style="background-image: url(https://turbologo.com/articles/wp-content/uploads/2019/07/Three-Bars-adidas-logo-1.jpg.webp);"></div>
 						<div class="login-wrap p-4 p-md-5">
 			      	<div class="d-flex">
 			      		<div class="w-100">
-			      			<h3 class="mb-4">Sign In</h3>
+			      			<h3 class="mb-4">récupération:</h3>
 			      		</div>
 								<div class="w-100">
 									<p class="social-media d-flex justify-content-end">
@@ -51,34 +44,25 @@
 									</p>
 								</div>
 			      	</div>
-				<form action="/singnin" method="post" class="signin-form">
+				<form action="" method="post" class="signin-form">
 					@csrf
 			      		<div class="form-group mt-3">
-			      			<input type="email" class="form-control" name="email" required>
-			      			<label class="form-control-placeholder"  for="username">email</label>
+			      			<input type="password" class="form-control" name="pass" required>
+			      			<label class="form-control-placeholder"  for="username">new password</label>
+			      		</div>
+			      		<div class="form-group mt-3">
+			      			<input type="password" class="form-control" name="c_pass" required>
+			      			<label class="form-control-placeholder"  for="username">comfirm password</label>
 			      		</div>
 		            <div class="form-group">
-		              <input id="password-field" type="password" name="password" class="form-control" required>
-		              <label class="form-control-placeholder" for="password">Password</label>
-		              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-		            </div>
-		            <div class="form-group">
-		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+		            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">Recupirer le mot de pass</button>
 		            </div>
 		            <div class="form-group d-md-flex">
-		            	<div class="w-50 text-left">
-			            	<label class="checkbox-wrap checkbox-primary mb-0">Remember Me
-									  <input type="checkbox" checked>
-									  <span class="checkmark"></span>
-										</label>
-									</div>
-									<div class="w-50 text-md-right">
-										<a href="/forgotpage">Forgot Password</a>
-									</div>
-		            </div>
+		            	
 		          </form>
-		          <p class="text-center">Not a member? <a data-toggle="tab" href="/register">Sign Up</a></p>
 		        </div>
+				<p class="text-center">Not a member? <a data-toggle="tab" href="/register">Sign Up</a></p>
+				<p class="text-center">member? <a data-toggle="tab" href="/login">Sign In</a></p>
 		      </div>
 				</div>
 			</div>

@@ -48,7 +48,8 @@ class RolesController extends Controller
         $role->delete();
         return Redirect()->to('/roles')->with('delete' , 'le Role est supprimer avec succes');
     }
-        Public function Add_Role(Request $request){
+    Public function Add_Role(Request $request)
+    {
         
         $data = $request->check;    
         $request->validate([
