@@ -97,7 +97,7 @@ class UtilisateurModelController extends Controller
                 return redirect()->to('/home');
             }
             else {                
-                return redirect()->to('/index');
+                return redirect()->to('/index');    
             }
             
         } else {

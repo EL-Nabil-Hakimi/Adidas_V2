@@ -64,25 +64,28 @@
 
 @section('nav')
 <div class="list-group list-group-flush mx-3 mt-4">
-          
-    <a href="/Client" class="list-group-item list-group-item-action py-2 ripple ">
-      <i class="fas fa-chart-area fa-fw me-3"></i><span>Clients</span>
-    </a>
-    <a href="/addclient" class="list-group-item list-group-item-action py-2 ripple">
-      <i class="fas fa-chart-area fa-fw me-3"></i><span>Ajouter Client</span>
-    </a>
-    <a href="/Product" class="list-group-item list-group-item-action py-2 ripple ">
-      <i class="fas fa-chart-area fa-fw me-3"></i><span>Produits</span>
-    </a>
-    <a href="/addproduit" class="list-group-item list-group-item-action py-2 ripple">
-      <i class="fas fa-chart-area fa-fw me-3"></i><span>Ajouter Produit</span>
-    </a>
-    <a href="/Categorie" class="list-group-item list-group-item-action py-2 ripple"
-      ><i class="fas fa-lock fa-fw me-3"></i><span>Categories</span></a
-    >
-    <a href="/addcategorie" class="list-group-item list-group-item-action py-2 ripple"
-      ><i class="fas fa-chart-line fa-fw me-3"></i><span>Ajouter Categorie</span></a
-    >
-    
-  </div>
+            
+  <a href="/Client" class="list-group-item list-group-item-action py-2 ripple ">
+    <i class="fas fa-chart-area fa-fw me-3"></i><span>Users</span>
+  </a>
+
+  <a href="/Product" class="list-group-item list-group-item-action py-2 ripple " >
+    <i class="fas fa-chart-area fa-fw me-3"></i><span>Produits</span>
+  </a>
+  <a href="/addProduitpage" class="list-group-item list-group-item-action py-2 ripple">
+    <i class="fas fa-chart-area fa-fw me-3"></i><span>Ajouter Produit</span>
+  </a>
+  <a href="/Categorie" class="list-group-item list-group-item-action py-2 ripple "
+    ><i class="fas fa-lock fa-fw me-3"></i><span>Categories</span></a
+  >
+  <a href="/addCategoriepage" class="list-group-item list-group-item-action py-2 ripple "
+    ><i class="fas fa-chart-line fa-fw me-3"></i><span>Ajouter Categorie</span></a
+  >
+  <a href="/roles" class="list-group-item list-group-item-action py-2 ripple "
+  ><i class="fas fa-chart-line fa-fw me-3"></i><span>Roles</span></a
+  >
+  <a href="/addrolepage" class="list-group-item list-group-item-action py-2 ripple "
+    ><i class="fas fa-chart-line fa-fw me-3"></i><span>Ajouter Role</span></a
+  >
+</div>
 @endsection

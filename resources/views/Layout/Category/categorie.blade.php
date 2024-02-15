@@ -1,63 +1,46 @@
 @extends('index')
 @section('content')   
-
-<div class="container mt-3" style="margin-bottom: 200px">
-
-  <a href="/addCategoriepage"><button class="btn btn-primary btn-sm" type="button" style="width: 30% ; height:40px; margin:20px" >Ajouter Categorie</button></a>
+<div class="container mt-3">
+    <a href="/addCategoriepage" class="btn btn-primary btn-sm mb-3">Ajouter Categorie</a>
 
     <h2>Categorie</h2>
-    <table class="table" >
-    
-      <thead class="table-primary">
-        <tr>
-          <th>Number</th>
-          <th>Categorie Name</th>
-          <th></th>
-          <th></th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        @php 
-          $number = 0;
-        @endphp
-        @foreach ($categories as $categorie)
-            
-        <tr>
-          <td>{{++$number}}</td>
-          <td>{{$categorie->name}}</td>
-          <td></td>
-          <td></td>
-          <td>
-            <div>
-              <a  onclick="Delete(e={{$categorie->id}})" class="text-danger" style="text-decoration: none ; cursor:pointer">Supprimer</a>
-              <span>/</span>
-              <a href="/modifyCategoriepage?id={{$categorie->id}}" class="text-primary" style="text-decoration: none">Modifier</a>
-            </div>
-          </td>
-        </tr>
-        @endforeach
-      
-
-        
-      </tbody>
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Number</th>
+                <th>Categorie Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @php 
+                $number = 0;
+            @endphp
+            @foreach ($categories as $categorie)
+                <tr>
+                    <td>{{++$number}}</td>
+                    <td>{{$categorie->name}}</td>
+                    <td>
+                        <a onclick="Delete(e={{$categorie->id}})" class="text-danger" style="cursor: pointer;">Supprimer</a>
+                        <span class="text-secondary">/</span>
+                        <a href="/modifyCategoriepage?id={{$categorie->id}}" class="text-primary" style="cursor: pointer;">Modifier</a>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
-    
-  </div>
-
-  @endsection
+</div>
+@endsection
 
 
   @section('nav')
   <div class="list-group list-group-flush mx-3 mt-4">
-          
+            
     <a href="/Client" class="list-group-item list-group-item-action py-2 ripple ">
-      <i class="fas fa-chart-area fa-fw me-3"></i><span>Clients</span>
+      <i class="fas fa-chart-area fa-fw me-3"></i><span>Users</span>
     </a>
-    <a href="/addClientpage" class="list-group-item list-group-item-action py-2 ripple">
-      <i class="fas fa-chart-area fa-fw me-3"></i><span>Ajouter Client</span>
-    </a>
-    <a href="/Product" class="list-group-item list-group-item-action py-2 ripple ">
+  
+    <a href="/Product" class="list-group-item list-group-item-action py-2 ripple " >
       <i class="fas fa-chart-area fa-fw me-3"></i><span>Produits</span>
     </a>
     <a href="/addProduitpage" class="list-group-item list-group-item-action py-2 ripple">
@@ -69,7 +52,12 @@
     <a href="/addCategoriepage" class="list-group-item list-group-item-action py-2 ripple "
       ><i class="fas fa-chart-line fa-fw me-3"></i><span>Ajouter Categorie</span></a
     >
-    
+    <a href="/roles" class="list-group-item list-group-item-action py-2 ripple "
+    ><i class="fas fa-chart-line fa-fw me-3"></i><span>Roles</span></a
+    >
+    <a href="/addrolepage" class="list-group-item list-group-item-action py-2 ripple "
+      ><i class="fas fa-chart-line fa-fw me-3"></i><span>Ajouter Role</span></a
+    >
   </div>
 
 

@@ -60,7 +60,7 @@
           <div class="list-group list-group-flush mx-3 mt-4">
             
             <a href="/Client" class="list-group-item list-group-item-action py-2 ripple ">
-              <i class="fas fa-chart-area fa-fw me-3"></i><span>Clients</span>
+              <i class="fas fa-chart-area fa-fw me-3"></i><span>Users</span>
             </a>
             <a href="/addClientpage" class="list-group-item list-group-item-action py-2 ripple">
               <i class="fas fa-chart-area fa-fw me-3"></i><span>Ajouter Client</span>
@@ -83,8 +83,8 @@
             <a href="/addrolepage" class="list-group-item list-group-item-action py-2 ripple "
               ><i class="fas fa-chart-line fa-fw me-3"></i><span>Ajouter Role</span></a
             >
+          </div>
           @endif
-        </div>
       </div>
     </nav>
     <!-- Sidebar -->
@@ -107,7 +107,7 @@
         </button>
   
         <!-- Brand -->
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/index">
           <img
             src="https://turbologo.com/articles/wp-content/uploads/2019/07/Three-Bars-adidas-logo-1.jpg.webp"
             height="60"

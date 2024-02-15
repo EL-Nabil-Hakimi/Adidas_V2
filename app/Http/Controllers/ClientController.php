@@ -20,11 +20,13 @@ class ClientController extends Controller
     
     public function index(){
         $clients = $this->client::join('roles', 'roles.id', '=', 'utilisateur_models.role_id')
-        ->select('utilisateur_models.*', 'roles.name As role_name')
-        ->get();
-        
+            ->select('utilisateur_models.*', 'roles.name As role_name')
+            ->orderBy('utilisateur_models.id', 'DESC')
+            ->get();
+
         return view('Layout.Client.client')->with('clients' , $clients);
     }
+    
     public function AddClientPage(){
         return view('Layout.Client.addclient');
     }

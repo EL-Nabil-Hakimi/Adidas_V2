@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Redirect;
 
 class RolesController extends Controller
 {
-        protected $roles;
-        protected $Pesrissions;
-        protected $RolePermissions;
+    protected $roles;
+    protected $Pesrissions;
+    protected $RolePermissions;
     public function __construct(){
         $this->roles = new Roles;
         $this->Pesrissions = new permissionModel;
@@ -43,10 +43,18 @@ class RolesController extends Controller
         return view('Layout.Roles.modifyrolepage' , compact('permissions' , 'role_name'));
     }
         public function DeleteRole(Request $request){
-        $id = $request->id;
+        // $id = $request->id;
+        $id = 2;
+        if($id != 1 && $id !=2){
         $role = $this->roles->where('id', $id)->first();
         $role->delete();
         return Redirect()->to('/roles')->with('delete' , 'le Role est supprimer avec succes');
+
+    }
+    else{
+        return Redirect()->to('/roles')->with('delete', 'le Role ne peut pas etre supprimer');
+    }
+
     }
     Public function Add_Role(Request $request)
     {

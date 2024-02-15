@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12 text-center">
                 <span class="display-1 d-block">404</span>
-                <div class="mb-4 lead">La page que vous recherchez n'a pas été trouvée.</div>
+                <div class="mb-4 lead">Vous n'avez pas l'accès.</div>
                 <a href="/index" class="btn btn-link">Retour à la page home</a>
             </div>
         </div>

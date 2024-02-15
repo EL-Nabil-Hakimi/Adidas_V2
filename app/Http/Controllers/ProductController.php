@@ -28,7 +28,7 @@ class ProductController extends Controller
                 return $sessData;
         }
 
-        $products = $this->product->paginate(3);
+        $products = $this->product->orderBy('id' ,'DESC')->paginate(5);
         return view('Layout.Product.produit', compact('products' ,'sessData' ))->with('msg', $msg);
 
     }
@@ -103,13 +103,15 @@ class ProductController extends Controller
 
 
 
-        public function search($title = "")
-        {   
-            $products = DB::table('produit')
-            ->where('name', 'LIKE', '%' . $title . '%')
-            ->paginate(5);
-        
-            return view('Layout.Product.page_search', compact('products'));
-        }
+    public function search($title = "")
+    {   
+        $products = DB::table('produit')
+        ->where('name', 'LIKE', '%' . $title . '%')
+        ->orWhere('description', 'LIKE', '%' . $title . '%')
+        ->orderBy('id' , 'DESC')
+        ->paginate(5);
+
+        return view('Layout.Product.page_search', compact('products'));
+    }
 
 }

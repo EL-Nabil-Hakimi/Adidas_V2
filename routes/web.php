@@ -87,6 +87,11 @@ Route::post('/reset/{token}' , [UtilisateurModelController::class   ,"reset_pass
 //Page Note Found----------------------------------------------
 
 Route::get('/home', [U_Index::class, 'indexUser']);
+Route::get('/contact', [U_Index::class, 'contact']);
+Route::get('/produits', [U_Index::class, 'produits']);
+Route::get('/news', [U_Index::class, 'news']);
+Route::get('/about', [U_Index::class, 'about']);
+Route::get("/searchpageUser/{title?}" , [U_Index::class, 'search']);
  
-Route::get("/search_page/{title?}" , [ProductController::class, 'search']);
+Route::get("/searchpage/{title?}" , [ProductController::class, 'search']);
 

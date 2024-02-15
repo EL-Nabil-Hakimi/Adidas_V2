@@ -165,13 +165,11 @@
 
 @section('nav')
 <div class="list-group list-group-flush mx-3 mt-4">
-          
+            
   <a href="/Client" class="list-group-item list-group-item-action py-2 ripple ">
-    <i class="fas fa-chart-area fa-fw me-3"></i><span>Clients</span>
+    <i class="fas fa-chart-area fa-fw me-3"></i><span>Users</span>
   </a>
-  <a href="/addClientpage" class="list-group-item list-group-item-action py-2 ripple">
-    <i class="fas fa-chart-area fa-fw me-3"></i><span>Ajouter Client</span>
-  </a>
+
   <a href="/Product" class="list-group-item list-group-item-action py-2 ripple active" >
     <i class="fas fa-chart-area fa-fw me-3"></i><span>Produits</span>
   </a>
@@ -184,16 +182,16 @@
   <a href="/addCategoriepage" class="list-group-item list-group-item-action py-2 ripple "
     ><i class="fas fa-chart-line fa-fw me-3"></i><span>Ajouter Categorie</span></a
   >
-  <a href="/Roles" class="list-group-item list-group-item-action py-2 ripple "
-  ><i class="fas fa-chart-line fa-fw me-3"></i><span>Ajouter Categorie</span></a
+  <a href="/roles" class="list-group-item list-group-item-action py-2 ripple "
+  ><i class="fas fa-chart-line fa-fw me-3"></i><span>Roles</span></a
   >
-  <a href="/AddRolespage" class="list-group-item list-group-item-action py-2 ripple "
-    ><i class="fas fa-chart-line fa-fw me-3"></i><span>Ajouter Categorie</span></a
+  <a href="/addrolepage" class="list-group-item list-group-item-action py-2 ripple "
+    ><i class="fas fa-chart-line fa-fw me-3"></i><span>Ajouter Role</span></a
   >
 </div>
-
   <!-- Inclure SweetAlert depuis une CDN -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
   var Delete = function(e) {
@@ -249,21 +247,35 @@
 
   }
 
-      var search = function () {
-        var title = document.getElementById("searshtext").value;
-        var reponse = new XMLHttpRequest();
-        reponse.open("GET", "/search_page/" + title, true);
+   
+
+
+    // var search = function () {
+    //     var title = document.getElementById("searshtext").value;
+    //     var reponse = new XMLHttpRequest();
+    //     reponse.open("GET", "/search_page/" + title, true);
         
-        reponse.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("MyDives").innerHTML = this.responseText;
-            }
-        };
+    //     reponse.onreadystatechange = function () {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             document.getElementById("MyDives").innerHTML = this.responseText;
+    //         }
+    //     };
+
+    //     reponse.send();
         
-        // Corrected URL concatenation
-        reponse.send();
-    };
+    // };
  
+
+    $(document).ready(function () {
+        $("#searshtext").keyup(function () {
+            var title = $(this).val();
+
+            $.get("/searchpage/" + title, function (data) {
+                $("#MyDives").html(data);
+            });
+        });
+    });
+
 </script>
 
 

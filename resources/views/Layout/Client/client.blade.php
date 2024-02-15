@@ -1,75 +1,76 @@
 @extends('index')
 @section('content')   
-
-{{-- <a href="/addClientpage"><button class="btn btn-primary btn-sm" type="button" style="width: 30% ; height:40px; margin:20px" >Ajouter Client</button></a> --}}
-<div class="container mt-3" style="margin-bottom: 200px">
-    <h2>Clients</h2>
-    <table class="table">
-      <thead class="table-primary">
-        <tr>
-          <th>Number</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Compte Cree a</th>
-          <th>Role</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        @php
-          $number = 0;
-        @endphp
-        @foreach($clients as $client)
-          <tr>
-            <td>{{$client->id}}</td>
-            <td>{{$client->name}}</td>
-            <td>{{$client->email}}</td>
-            <td>{{$client->created_at}}</td>
-            <td>{{$client->role_name}}</td>
-            <td>
-            <div>
-                <a onclick="Delete(e={{$client->id}})" class="text-danger" style="text-decoration: none ; cursor :pointer">Supprimer</a>
-                <span>/</span>
-                <a href="/modifyClientpage?id={{$client->id}}" class="text-primary" style="text-decoration: none">Modifier Le Role</a>
-            </div>
-          </td>
-        </tr>
-        @endforeach
-      
-
-        
-      </tbody>
+<div class="container mt-3">
+    <h2>Users</h2>
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Number</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Compte Créé à</th>
+                <th>Role</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @php
+                $number = 0;
+            @endphp
+            @foreach($clients as $client)
+                <tr>
+                    <td>{{$client->id}}</td>
+                    <td>{{$client->name}}</td>
+                    <td>{{$client->email}}</td>
+                    <td>{{$client->created_at}}</td>
+                      @if($client->role_name == "Admin")
+                         <td class="text-success">{{$client->role_name}}</td>
+                      @elseif($client->role_name == "Guest")
+                          <td class="text-warning">{{$client->role_name}}</td>
+                      @else
+                            <td class="text-primary">{{$client->role_name}}</td>
+                       @endif
+                
+                    <td>
+                        <a onclick="Delete(e={{$client->id}})" class="text-danger" style="cursor: pointer;">Supprimer</a>
+                        <span class="text-secondary">/</span>
+                        <a href="/modifyClientpage?id={{$client->id}}" class="text-primary" style="cursor: pointer;">Modifier Le Role</a>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
-    
-  </div>
+</div>
+@endsection
 
-  @endsection
 
 
   @section('nav')
   <div class="list-group list-group-flush mx-3 mt-4">
-          
+            
     <a href="/Client" class="list-group-item list-group-item-action py-2 ripple active">
-      <i class="fas fa-chart-area fa-fw me-3"></i><span>Clients</span>
+      <i class="fas fa-chart-area fa-fw me-3"></i><span>Users</span>
     </a>
-    <a href="/addClientpage" class="list-group-item list-group-item-action py-2 ripple">
-      <i class="fas fa-chart-area fa-fw me-3"></i><span>Ajouter Client</span>
-    </a>
-    <a href="/Product" class="list-group-item list-group-item-action py-2 ripple ">
+ 
+    <a href="/Product" class="list-group-item list-group-item-action py-2 ripple " >
       <i class="fas fa-chart-area fa-fw me-3"></i><span>Produits</span>
     </a>
     <a href="/addProduitpage" class="list-group-item list-group-item-action py-2 ripple">
       <i class="fas fa-chart-area fa-fw me-3"></i><span>Ajouter Produit</span>
     </a>
-    <a href="/Categorie" class="list-group-item list-group-item-action py-2 ripple"
+    <a href="/Categorie" class="list-group-item list-group-item-action py-2 ripple "
       ><i class="fas fa-lock fa-fw me-3"></i><span>Categories</span></a
     >
     <a href="/addCategoriepage" class="list-group-item list-group-item-action py-2 ripple "
       ><i class="fas fa-chart-line fa-fw me-3"></i><span>Ajouter Categorie</span></a
     >
-    
+    <a href="/roles" class="list-group-item list-group-item-action py-2 ripple "
+    ><i class="fas fa-chart-line fa-fw me-3"></i><span>Roles</span></a
+    >
+    <a href="/addrolepage" class="list-group-item list-group-item-action py-2 ripple "
+      ><i class="fas fa-chart-line fa-fw me-3"></i><span>Ajouter Role</span></a
+    >
   </div>
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>

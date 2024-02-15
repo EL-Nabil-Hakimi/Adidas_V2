@@ -16,11 +16,12 @@ class Permission
      */
         public function handle(Request $request, Closure $next): Response
         {
-            $publicRoutes = ['/', 'login',  'register' , 'signup' , 'singnin'  ,'Notfound' , 'home'];
+            $publicRoutes = ['/', 'login',  'register' , 'signup' , 'singnin'  ,'Notfound' , 'home' , 'index' , 'contact' , 'produits' , 'news' , 'about' , 'searchpageUser/{title?}'];
             $uri = $request->route()->uri;
+            $role_id = session('role_id') ?? '';
+            
             if (in_array($uri, $publicRoutes)) return $next($request);
             
-            $role_id = session('role_id') ?? '';
 
             if ($role_id) {
                 $allowedRoutes = permission_RoleModel::where('role_id', $role_id)->get();
