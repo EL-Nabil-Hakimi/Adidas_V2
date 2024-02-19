@@ -64,7 +64,7 @@
 @section('nav')
 <div class="list-group list-group-flush mx-3 mt-4">
             
-  <a href="/Client" class="list-group-item list-group-item-action py-2 ripple ">
+  <a href="/User" class="list-group-item list-group-item-action py-2 ripple ">
     <i class="fas fa-chart-area fa-fw me-3"></i><span>Users</span>
   </a>
 

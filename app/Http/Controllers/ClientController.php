@@ -45,7 +45,7 @@ class ClientController extends Controller
     public function Delete_Client(Request $request){
         $id = $request->id;
         $this->client->find($id)->delete();
-        return redirect()->route('ClientView');
+        return redirect()->to('/User');
     }
     public function Modify_Client(Request $request){
         $id = $request->id;
@@ -53,6 +53,7 @@ class ClientController extends Controller
         $client->role_id = $request->role_id;
         $client->update();
 
-       return redirect()->route('ClientView');    }
+        return redirect()->to('/User');
+    }
 
 }

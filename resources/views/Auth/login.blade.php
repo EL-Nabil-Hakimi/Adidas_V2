@@ -75,12 +75,17 @@
 									<div class="w-50 text-md-right">
 										<a href="/forgotpage">Forgot Password</a>
 									</div>
+									
 		            </div>
 		          </form>
-		          <p class="text-center">Not a member? <a data-toggle="tab" href="/register">Sign Up</a></p>
+				  
+				  <p class="text-center">Not a member? <a href="/register">Sign Up</a></p>
+				  <p class="text-center"><a href="/home">page d'accueil</a></p>
 		        </div>
+			
 		      </div>
 				</div>
+				
 			</div>
 		</div>
 	</section>

@@ -59,12 +59,18 @@
 
     <div class="row height d-flex justify-content-center align-items-center">
 
-      <div class="col-md-8">
+      <div class="col-md-6">
 
-        <div class="search">
-              <i class="fa fa-search"></i>
-              <input type="text" id="searshtext" class="form-control" placeholder="Pc Portable ...">
-              <button class="btn btn-primary" onclick="search()">Recherche</button>
+        <div class="search" style="margin-bottom: 20px; display: flex; align-items: center ; width:100% ">
+          <input type="text" id="searshtext" class="form-control" placeholder="Pc Portable ..." style="flex: 1; margin-right: 10px; border : solid black 1px">
+          <select class="form-control" name="categoryid" id="categoryid" style="width: 250px; height:60px ;background-color :#4558ea ; color:#fff" >
+              <option value="">Choisir La Categorie</option>
+              @foreach ($categories as $categorie)
+                  <option value="{{$categorie->id}}">{{$categorie->name}}</option>                      
+              @endforeach
+          </select>
+      </div>
+            
         </div>
         
       </div>
@@ -115,7 +121,6 @@
                       <i class="fa fa-star"></i>
                     </div>
                   </div>
-                 
                 
                   <p class="mb-4 mb-md-6">
                     {{$product->description}}
@@ -127,7 +132,7 @@
                     <span class="text-danger"><s>{{$product->prix*1.4}}</s></span>
                   </div>
                   <h6 class="text-success">Free shipping</h6>
-                 
+                                   
                   <div class="d-flex flex-column mt-4">
                     <a class="btn btn-primary btn-sm" type="button" onclick=" Details( {{$product->id}} , '{{$product->name}}' , `{{$product->description}}` ,'{{$product->image}}' ,'{{$product->prix}}' )" >Details</a>
        
@@ -166,7 +171,7 @@
 @section('nav')
 <div class="list-group list-group-flush mx-3 mt-4">
             
-  <a href="/Client" class="list-group-item list-group-item-action py-2 ripple ">
+  <a href="/User" class="list-group-item list-group-item-action py-2 ripple ">
     <i class="fas fa-chart-area fa-fw me-3"></i><span>Users</span>
   </a>
 
@@ -266,15 +271,26 @@
     // };
  
 
-    $(document).ready(function () {
-        $("#searshtext").keyup(function () {
-            var title = $(this).val();
+       $(document).ready(function () {
+            $("#searshtext, #categoryid").on("keyup change", function () {
+                var title = $("#searshtext").val();
+                var category = $("#categoryid").val();
 
-            $.get("/searchpage/" + title, function (data) {
-                $("#MyDives").html(data);
+                var url = "/searchpage";
+                if (title) {
+                    url += "/" + title;
+                }
+                if (category) {
+                    url += "/" + category;
+                }
+
+                $.get(url, function (data) {
+                    $("#MyDives").html(data);
+                });
             });
         });
-    });
+
+
 
 </script>
 

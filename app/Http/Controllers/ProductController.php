@@ -23,13 +23,10 @@ class ProductController extends Controller
     public function index(Request $request){
         $msg = session('msg');
 
-        $sessData = CheckSessionController::checkSession();
-        if ($sessData instanceof RedirectResponse) {
-                return $sessData;
-        }
-
+        $categories = $this->category->all();
+        
         $products = $this->product->orderBy('id' ,'DESC')->paginate(5);
-        return view('Layout.Product.produit', compact('products' ,'sessData' ))->with('msg', $msg);
+        return view('Layout.Product.produit', compact('products'  ,'categories'))->with('msg', $msg);
 
     }
     
@@ -103,15 +100,24 @@ class ProductController extends Controller
 
 
 
-    public function search($title = "")
-    {   
-        $products = DB::table('produit')
-        ->where('name', 'LIKE', '%' . $title . '%')
-        ->orWhere('description', 'LIKE', '%' . $title . '%')
-        ->orderBy('id' , 'DESC')
-        ->paginate(5);
+    public function search($title = null, $category = null)
+    {
+            $query = DB::table('produit')
+                ->select('produit.*');
+            if (!empty($title)) {
+                $query->where(function ($query) use ($title) {
+                    $query->where('produit.name', 'LIKE', '%' . $title . '%')
+                        ->orWhere('produit.description', 'LIKE', '%' . $title . '%');
+                });
+            }
 
-        return view('Layout.Product.page_search', compact('products'));
+            if (!empty($category)) {
+                $query->where('categorie_id', '=', $category);
+            }
+
+            $products = $query->orderBy('produit.id' , 'DESC')->paginate(5);
+
+            return view('Layout.Product.page_search', compact('products'));
     }
 
 }

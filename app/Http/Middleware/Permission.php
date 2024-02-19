@@ -16,7 +16,8 @@ class Permission
      */
         public function handle(Request $request, Closure $next): Response
         {
-            $publicRoutes = ['/', 'login',  'register' , 'signup' , 'singnin'  ,'Notfound' , 'home' , 'index' , 'contact' , 'produits' , 'news' , 'about' , 'searchpageUser/{title?}'];
+            $publicRoutes = ['/', 'login',  'register' , 'signup' , 'singnin'  ,'Notfound' , 'home' , 'index' , 'contact' , 'produits' , 'news' ,
+             'about' , 'searchpageUser/{title?}/{category?}' , "searchpage/{title?}/{category?}" , 'forgotpage' , 'forgot' , 'reset/{token}' ];
             $uri = $request->route()->uri;
             $role_id = session('role_id') ?? '';
             

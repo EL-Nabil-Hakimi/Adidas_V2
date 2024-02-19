@@ -19,6 +19,21 @@ class UtilisateurModelController extends Controller
     public function __construct(){
         $this->utilisateur = new UtilisateurModel();
     }
+
+
+
+    public function indexforall(){
+        if(Session::get('role_id')){
+            
+            return view('index');
+        }
+
+        else{
+            return redirect()->to('/login');
+        
+    }
+  }
+
     public function Register_Page(){
         return view('Auth.register');
     }
@@ -154,7 +169,7 @@ class UtilisateurModelController extends Controller
             
             Mail::to($checkemail->email)->send(new ForgotPassMail($checkemail));
             
-            return back()->with('message', 'Emai Exist');
+            return back()->with('message', 'check voter email');
 
          }
          else{

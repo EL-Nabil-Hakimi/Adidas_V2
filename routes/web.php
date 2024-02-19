@@ -21,11 +21,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/index', function () {
-       return view('index');
-});
+Route::get('/index',[UtilisateurModelController::class , 'indexforall']);
 
-
+Route::get('/' , [UtilisateurModelController::class , 'Login_Page'])->name('login');   
 Route::get('/login' , [UtilisateurModelController::class , 'Login_Page'])->name('login');   
 Route::get('/register' , [UtilisateurModelController::class , 'Register_Page']);
 //Traitmment de Authontification...
@@ -34,8 +32,7 @@ Route::post('/singnin' , [UtilisateurModelController::class , 'Login']);
 
 //l'affichage des pages
 Route::get('Product', [ProductController::class , 'index'])->name("ProductView");
-Route::get('/Client', [ClientController::class , 'index'])->name("ClientView");
-Route::get('/', [ClientController::class , 'index'])->name("ClientView");
+Route::get('/User', [ClientController::class , 'index'])->name("User");
 Route::get('/Categorie', [CategorieController::class , 'index'])->name("CategorieView");
 Route::get('/roles' , [RolesController::class , 'index']);
 
@@ -91,7 +88,7 @@ Route::get('/contact', [U_Index::class, 'contact']);
 Route::get('/produits', [U_Index::class, 'produits']);
 Route::get('/news', [U_Index::class, 'news']);
 Route::get('/about', [U_Index::class, 'about']);
-Route::get("/searchpageUser/{title?}" , [U_Index::class, 'search']);
+Route::get("/searchpageUser/{title?}/{category?}" , [U_Index::class, 'search']);
  
-Route::get("/searchpage/{title?}" , [ProductController::class, 'search']);
+Route::get("/searchpage/{title?}/{category?}", [ProductController::class, 'search']);
 

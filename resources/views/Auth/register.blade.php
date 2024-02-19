@@ -88,7 +88,8 @@
 									</div>
 		            </div>
 		          </form>
-		          <p class="text-center">Not a member? <a data-toggle="tab" href="/login">Sign Up</a></p>
+				  <p class="text-center">Not a member? <a href="/login">Sign In</a></p>
+				  <p class="text-center"><a href="/home">page d'accueil</a></p>
 		        </div>
 		      </div>
 				</div>
